@@ -1,4 +1,3 @@
-
 var models=require('../models');
 var loginService = function () {
     this.checkCredentian = function (username, password, callback) {
@@ -12,7 +11,12 @@ var loginService = function () {
             }else{
                 callback(false);
             }
-           
+          });
+    }
+    this.signup=function(username,email, password,callback){
+        models.User.create({ firstName: username, email: email, password: password }).then(task => {
+            console.log(task);
+            callback(task);
           });
     }
 }

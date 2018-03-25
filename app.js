@@ -14,6 +14,9 @@ app.get('/page',function(req,res){
 app.get('/login',function(req,res){
     res.render('pages/login',{'message':''});
 });
+app.post('/dologin',function(req,res){
+    res.render('pages/login',{'message':''});
+});
 
 app.post('/dologin',function(req,res){
     loginService.checkCredentian(req.body.username,req.body.password,function(isValid){
@@ -25,6 +28,17 @@ app.post('/dologin',function(req,res){
         }
     });
 });
+
+app.get('/signup',function(req,res){
+    res.render('pages/signup');
+});
+
+app.post('/dosignup',function(req,res){
+    loginService.signup(req.body.username,req.body.email,req.body.password,function(data){
+        res.send(data);
+    });
+});
+
 
 app.listen(8080,()=>{
          console.log('started');
